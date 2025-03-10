@@ -1,7 +1,7 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import { Error } from '@/pages/error';
-import { Base } from './layouts/Base';
-import { Home } from './pages/Home';
+import { Base } from '../layouts/Base';
+import { Home } from '../pages/Home';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
