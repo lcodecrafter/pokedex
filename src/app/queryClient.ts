@@ -16,9 +16,11 @@ export const queryClient = new QueryClient({
 
 const localStoragePersister = createSyncStoragePersister({
   storage: window.localStorage,
+  key: 'pokedex-cache',
 });
 
 persistQueryClient({
   queryClient,
   persister: localStoragePersister,
+  maxAge: 1000 * 60 * 60 * 24 * 7, // save cache for 1 week
 });
