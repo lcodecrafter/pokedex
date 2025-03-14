@@ -13,7 +13,9 @@ export function PokemonDetail() {
   if (isError || !pokemon) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen">
-        <p className="text-red-500 mb-4">Failed to load Pokémon details</p>
+        <p role="alert" className="text-red-500 mb-4">
+          Failed to load Pokémon details
+        </p>
         <button
           onClick={() => navigate('/')}
           className="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-lg cursor-pointer hover:bg-gray-200"
@@ -45,7 +47,13 @@ export function PokemonDetail() {
         </div>
 
         <div className="text-center mb-8">
-          <p className="text-gray-500 text-sm mb-2">#{String(pokemon.id).padStart(3, '0')}</p>
+          <p
+            role="text"
+            aria-label={`Pokemon id ${pokemonId}`}
+            className="text-gray-500 text-sm mb-2"
+          >
+            #{String(pokemon.id).padStart(3, '0')}
+          </p>
           <h1 className="text-3xl font-bold capitalize mb-4">{pokemon.name}</h1>
           <img src={pokemon.imageUrl} alt={pokemon.name} className="w-64 h-64 mx-auto" />
         </div>
