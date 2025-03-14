@@ -1,20 +1,13 @@
 import { PokemonCard } from '../components/PokemonCard';
 import { usePokemonList } from '../hooks/usePokemonList';
 import { Link } from 'react-router-dom';
-import { LoaderCircle } from 'lucide-react';
 import { Navigation } from '../components/Navigation';
+import { Spinner } from '@/components/ui/spinner';
 
 export function PokemonList() {
   const { currentPage, totalPages, isLoading, pokemonList, setCurrentPage } = usePokemonList();
 
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen" role="status">
-        <LoaderCircle className="w-8 h-8 animate-spin" aria-hidden="true" />
-        <p>Loading...</p>
-      </div>
-    );
-  }
+  if (isLoading) return <Spinner />;
 
   return (
     <div className="container mx-auto px-4 py-8">
