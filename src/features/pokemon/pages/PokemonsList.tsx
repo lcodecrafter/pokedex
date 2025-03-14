@@ -1,16 +1,17 @@
 import { PokemonCard } from '../components/PokemonCard';
-import { Pagination } from '../components/Pagination';
-import { Spinner } from '@/components/ui/Spinner';
 import { usePokemonList } from '../hooks/usePokemonList';
 import { Link } from 'react-router-dom';
+import { LoaderCircle } from 'lucide-react';
+import { Navigation } from '../components/Navigation';
 
 export function PokemonList() {
   const { currentPage, totalPages, isLoading, pokemonList, setCurrentPage } = usePokemonList();
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <Spinner />
+      <div className="flex items-center justify-center min-h-screen" role="status">
+        <LoaderCircle className="w-8 h-8 animate-spin" aria-hidden="true" />
+        <p>Loading...</p>
       </div>
     );
   }
@@ -35,10 +36,16 @@ export function PokemonList() {
             ),
         )}
       </div>
-      <Pagination
+
+      <Navigation
+        onPrevious={() => setCurrentPage(currentPage - 1)}
+        onNext={() => setCurrentPage(currentPage + 1)}
+        disablePrevious={currentPage === 1}
+        disableNext={currentPage === totalPages}
+        showPageInfo
         currentPage={currentPage}
         totalPages={totalPages}
-        onPageChange={(page: number) => setCurrentPage(page)}
+        className="mt-8"
       />
     </div>
   );

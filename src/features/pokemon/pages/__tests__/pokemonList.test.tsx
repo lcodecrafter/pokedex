@@ -4,7 +4,6 @@ import { PokemonList } from '../PokemonsList';
 import { usePokemonList } from '../../hooks/usePokemonList';
 import { pokemons as mockPokemons } from '@/tests/mocks';
 
-// Mock de `usePokemonList`
 vi.mock('../../hooks/usePokemonList');
 
 describe('PokemonList Page', () => {
@@ -25,7 +24,7 @@ describe('PokemonList Page', () => {
     });
 
     render(<PokemonList />);
-    expect(screen.getByText(/loading.../i)).toBeInTheDocument();
+    expect(screen.getByRole('status')).toHaveTextContent('Loading...');
   });
 
   it('renders the list of Pokémon correctly', () => {
