@@ -15,12 +15,12 @@ Este proyecto es una aplicación web Pokedex que permite explorar y visualizar i
 
 ### Herramientas de Desarrollo
 
-Vite: Bundler y servidor de desarrollo
-ESLint: Análisis estático de código
-Prettier: Formateador de código
-Husky: Hooks de git
-Lint-Staged: Ejecuta linters en archivos staged
-Vitest: Framework de testing
+- Vite: Bundler y servidor de desarrollo
+- ESLint: Análisis estático de código
+- Prettier: Formateador de código
+- Husky: Hooks de git
+- Lint-Staged: Ejecuta linters en archivos staged
+- Vitest: Framework de testing
 
 ## Arquitectura del Proyecto
 
