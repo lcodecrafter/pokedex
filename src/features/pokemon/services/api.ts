@@ -3,9 +3,12 @@ import { Pokemon, PokemonListResponse, PokemonResponse } from '../models/pokemon
 
 export const LIMIT = 16;
 
-const fetchClient = createFetchClient(import.meta.env.VITE_POKEAPI_BASE_URL);
+const defaultFetchClient = createFetchClient(import.meta.env.VITE_POKEAPI_BASE_URL);
 
-export const getPokemonList = async (page: number): Promise<PokemonListResponse> => {
+export const getPokemonList = async (
+  page: number,
+  fetchClient = defaultFetchClient,
+): Promise<PokemonListResponse> => {
   const offset = (page - 1) * LIMIT;
   const response = await fetchClient<PokemonListResponse>(
     `/pokemon?limit=${LIMIT}&offset=${offset}`,
@@ -14,7 +17,10 @@ export const getPokemonList = async (page: number): Promise<PokemonListResponse>
   return response;
 };
 
-export const getPokemonDetails = async (pokemonId: string): Promise<Pokemon> => {
+export const getPokemonDetails = async (
+  pokemonId: string,
+  fetchClient = defaultFetchClient,
+): Promise<Pokemon> => {
   const { id, name, abilities, sprites } = await fetchClient<PokemonResponse>(
     `/pokemon/${pokemonId}`,
   );

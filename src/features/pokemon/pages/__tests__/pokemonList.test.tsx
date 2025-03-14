@@ -58,7 +58,7 @@ describe('PokemonList Page', () => {
     expect(screen.getByRole('heading', { name: /Pokédex/i })).toBeInTheDocument();
   });
 
-  it('calls setCurrentPage when clicking next page button', () => {
+  it('calls setCurrentPage with the next page when clicking next page button', () => {
     const setCurrentPageMock = vi.fn();
 
     mockUsePokemonList.mockReturnValue({
@@ -75,5 +75,24 @@ describe('PokemonList Page', () => {
     fireEvent.click(paginationNextButton);
 
     expect(setCurrentPageMock).toHaveBeenCalledWith(2);
+  });
+
+  it('calls setCurrentPage with the previous page when clicking prev page button', () => {
+    const setCurrentPageMock = vi.fn();
+
+    mockUsePokemonList.mockReturnValue({
+      pokemonList: mockPokemons,
+      isLoading: false,
+      currentPage: 2,
+      totalPages: 5,
+      setCurrentPage: setCurrentPageMock,
+    });
+
+    render(<PokemonList />);
+
+    const paginationNextButton = screen.getByRole('button', { name: /previous/i });
+    fireEvent.click(paginationNextButton);
+
+    expect(setCurrentPageMock).toHaveBeenCalledWith(1);
   });
 });
